@@ -34,7 +34,7 @@ class UserController {
      * Verify change in user email and if it's available
      */
     if (email !== user.email) {
-      const userExist = User.findOne({ where: { email } });
+      const userExist = await User.findOne({ where: { email } });
 
       if (userExist) {
         return res.status(401).json({ error: 'User already exist.' });
@@ -61,10 +61,6 @@ class UserController {
       name,
       email,
     });
-  }
-
-  async index(req, res) {
-    return res.json();
   }
 
   async delete(req, res) {
