@@ -64,7 +64,9 @@ class UserController {
   }
 
   async delete(req, res) {
-    return res.json();
+    await User.destroy({ where: { id: req.userId } });
+
+    return res.json({ success: 'User has been deleted.' });
   }
 }
 
