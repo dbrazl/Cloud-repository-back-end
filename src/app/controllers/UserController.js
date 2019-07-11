@@ -26,7 +26,7 @@ class UserController {
   }
 
   async update(req, res) {
-    return res.json();
+    return res.json({ res: 'ok' });
   }
 
   async index(req, res) {
