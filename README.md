@@ -7,4 +7,5 @@ A app like Google Drive or DropBox to upload and download archives. It`s fully d
 - Sequelize
 - AWS RDS
 - Morgan.js (log)
+- JWT
 - **more comming...**
