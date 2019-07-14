@@ -9,4 +9,5 @@ A app like Google Drive or DropBox to upload and download archives. It's fully d
 - **Morgan.js**: is a library to log
 - **JWT**: is a library to authetication
 - **Yup**: is a schema validation to REST requests
+- **Cors**: is a library to access REST API in Browser (React Framework).
 - more comming...
