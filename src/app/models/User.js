@@ -27,6 +27,75 @@ class User extends Model {
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
   }
+
+  generateNewRandomPassword(size) {
+    const characters = [
+      'a',
+      'b',
+      'c',
+      'd',
+      'e',
+      'f',
+      'g',
+      'h',
+      'i',
+      'j',
+      'k',
+      'l',
+      'm',
+      'n',
+      'o',
+      'p',
+      'q',
+      'r',
+      's',
+      't',
+      'u',
+      'v',
+      'w',
+      'x',
+      'y',
+      'z',
+      '!',
+      '@',
+      '#',
+      '$',
+      '%',
+      '^',
+      '&',
+      '*',
+      '(',
+      ')',
+      '-',
+      '=',
+      '+',
+      '/',
+      '?',
+      '>',
+      '<',
+      ',',
+      '.',
+      '`',
+      '~',
+    ];
+
+    const passwordSize = size;
+
+    const randomNumber = Math.random();
+
+    const string = String(randomNumber);
+
+    const [, number] = string.split('.');
+
+    // eslint-disable-next-line no-var
+    var password = '';
+
+    for (let i = 0; i < passwordSize / 2; i += 1) {
+      password += number[i] + characters[number[i]];
+    }
+
+    return String(password);
+  }
 }
 
 export default User;
