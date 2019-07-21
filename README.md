@@ -11,3 +11,11 @@ A app like Google Drive or DropBox to upload and download archives. It's fully d
 - **Yup**: is a schema validation to REST requests
 - **Cors**: is a library to access REST API in Browser (React Framework).
 - more comming...
+
+## Backlog to implement
+- Upload of perfil image
+- Upload of archives
+- Download of archives
+- Open archives in Browser
+- Rename archives
+- Delete archives
