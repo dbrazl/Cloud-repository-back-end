@@ -14,6 +14,7 @@ A app like Google Drive or DropBox to upload and download archives. It's fully d
 
 ## Backlog to implement
 - Upload of perfil image
+- Delete account
 - Upload of archives
 - Download of archives
 - Open archives in Browser
