@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import User from '../models/User';
+import Mail from '../../lib/Mail';
 
 class RestoreController {
   async update(req, res) {
@@ -12,6 +13,8 @@ class RestoreController {
         .required(),
     });
 
+    const { email } = req.body;
+
     /**
      * Verify if request is valid with our schema
      */
@@ -22,7 +25,7 @@ class RestoreController {
     /**
      * Verify if the user exist on DB
      */
-    const user = await User.findOne({ where: { email: req.body.email } });
+    const user = await User.findOne({ where: { email } });
     if (!user) {
       return res.status(400).json({ error: 'User does not exist' });
     }
@@ -39,7 +42,13 @@ class RestoreController {
       password: random,
     });
 
-    return res.json({ number: random });
+    await Mail.sendMail({
+      to: `${user.name} <${email}>`,
+      subject: 'Senha redefinida',
+      text: `A sua nova senha é ${random}`,
+    });
+
+    return res.json({ sucess: 'Password has been send' });
   }
 }
 
