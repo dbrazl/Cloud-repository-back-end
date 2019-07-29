@@ -23,6 +23,16 @@ class FileController {
     return res.json(files);
   }
 
+  async update(req, res) {
+    const { id } = req.body;
+
+    const file = await File.findOne({ where: { id } });
+
+    const { name } = await file.update(req.body);
+
+    res.json({ id, name });
+  }
+
   async delete(req, res) {
     const { path } = req.params;
 

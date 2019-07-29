@@ -27,6 +27,7 @@ routes.delete('/avatar/:path', AvatarController.delete);
 
 routes.get('/file', FileController.index);
 routes.post('/file', upload.single('file'), FileController.store);
+routes.put('/file', FileController.update);
 routes.delete('/file/:path', FileController.delete);
 
 export default routes;
