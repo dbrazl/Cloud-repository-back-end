@@ -7,6 +7,7 @@ import SessionController from './app/controllers/SessionController';
 import RestoreController from './app/controllers/RestoreController';
 import AvatarController from './app/controllers/AvatarController';
 import FileController from './app/controllers/FileController';
+import AccountController from './app/controllers/AccountController';
 
 import AuthMiddleware from './app/middlewares/auth';
 
@@ -29,5 +30,7 @@ routes.get('/file', FileController.index);
 routes.post('/file', upload.single('file'), FileController.store);
 routes.put('/file', FileController.update);
 routes.delete('/file/:path', FileController.delete);
+
+routes.delete('/account', AccountController.delete);
 
 export default routes;

@@ -12,8 +12,6 @@ A app like Google Drive or DropBox to upload and download archives. It's fully d
 - **Cors**: is a library to access REST API in Browser (React Framework).
 - **Nodemailer**: is a library to send e-mail.
 - **Multer**: is a library to handle files. In this case I used him to upload files.
-- more comming...
 
 ## Backlog to implement
-- Delete account
-- Download of archives
+ FINISHED =D
