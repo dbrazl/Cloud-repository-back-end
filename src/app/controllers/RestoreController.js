@@ -42,6 +42,9 @@ class RestoreController {
       password: random,
     });
 
+    /**
+     * Send e-mail if new password to the user
+     */
     await Mail.sendMail({
       to: `${user.name} <${email}>`,
       subject: 'Senha redefinida',

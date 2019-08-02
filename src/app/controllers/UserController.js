@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import User from '../models/User';
+import File from '../models/File';
 
 class UserController {
   async store(req, res) {
@@ -107,9 +108,12 @@ class UserController {
   }
 
   async delete(req, res) {
+    const files = await File.findAll({ where: { owner: req.userId } });
+
+    files.map(file => File.destroy({ where: { path: file.path } }));
     await User.destroy({ where: { id: req.userId } });
 
-    return res.json({ success: 'User has been deleted.' });
+    res.json({ sucess: 'Account has been deleted' });
   }
 }
 

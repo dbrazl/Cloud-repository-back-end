@@ -83,7 +83,7 @@ class User extends Model {
       '~',
     ];
 
-    const passwordSize = size;
+    const passwordSize = size / 2;
 
     const randomNumber = Math.random();
 
@@ -94,7 +94,7 @@ class User extends Model {
     // eslint-disable-next-line no-var
     var password = '';
 
-    for (let i = 0; i < passwordSize / 2; i += 1) {
+    for (let i = 0; i < passwordSize; i += 1) {
       password += number[i] + characters[number[i]];
     }
 

@@ -31,6 +31,11 @@ class AvatarController {
       res.status(400).json({ error: 'File is to larger' });
     }
 
+    /**
+     * Destroy previous avatar image
+     */
+    await File.destroy({ where: { avatar: true, owner: req.userId } });
+
     const file = await File.create({
       name,
       path,
