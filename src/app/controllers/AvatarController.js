@@ -18,6 +18,7 @@ class AvatarController {
       'image/pjpeg',
       'image/png',
       'image/gif',
+      'image/svg',
     ];
 
     if (!allowedMimes.includes(type)) {

@@ -1,26 +1,9 @@
-import * as Yup from 'yup';
 import User from '../models/User';
 import Mail from '../../lib/Mail';
 
 class RestoreController {
   async update(req, res) {
-    /**
-     * Schema validation
-     */
-    const schema = Yup.object().shape({
-      email: Yup.string()
-        .email()
-        .required(),
-    });
-
     const { email } = req.body;
-
-    /**
-     * Verify if request is valid with our schema
-     */
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation fails' });
-    }
 
     /**
      * Verify if the user exist on DB

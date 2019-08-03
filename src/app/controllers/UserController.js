@@ -1,29 +1,8 @@
-import * as Yup from 'yup';
 import User from '../models/User';
 import File from '../models/File';
 
 class UserController {
   async store(req, res) {
-    /**
-     * Schema validation
-     */
-    const schema = Yup.object().shape({
-      name: Yup.string().required(),
-      email: Yup.string()
-        .email()
-        .required(),
-      password: Yup.string()
-        .min(6)
-        .required(),
-    });
-
-    /**
-     * Verify if request is valid with our schema
-     */
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation fails.' });
-    }
-
     /**
      * Verify if the user exist in DB
      */
@@ -48,28 +27,6 @@ class UserController {
   }
 
   async update(req, res) {
-    /**
-     * Schema validation
-     */
-    const schema = Yup.object().shape({
-      name: Yup.string(),
-      email: Yup.string().email(),
-      oldPassword: Yup.string().min(6),
-      password: Yup.string()
-        .min(6)
-        .when('oldPassword', (oldPassword, field) =>
-          oldPassword ? field.required() : field
-        ),
-      avatar_id: Yup.number(),
-    });
-
-    /**
-     * Verify if request is valid with our schema
-     */
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation fails.' });
-    }
-
     const { email, oldPassword } = req.body;
 
     const user = await User.findByPk(req.userId);
