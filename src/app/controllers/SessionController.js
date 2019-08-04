@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
+import File from '../models/File';
 import authConfig from '../../config/auth';
 
 class SessionController {
@@ -22,7 +23,14 @@ class SessionController {
       return res.status(401).json({ error: 'Password does not match.' });
     }
 
-    const { id, name } = user;
+    const { id, name, avatar_id } = user;
+
+    /**
+     * Find url of user avatar if it exist
+     */
+    const file = await File.findOne({ where: { id: avatar_id } });
+
+    const url = file && file.url;
 
     /**
      * Return user and token
@@ -32,6 +40,7 @@ class SessionController {
         id,
         name,
         email,
+        avatar: { avatar_id, url },
       },
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,

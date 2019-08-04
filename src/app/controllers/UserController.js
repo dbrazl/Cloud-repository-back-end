@@ -52,7 +52,14 @@ class UserController {
     /**
      * Update user in DB
      */
-    const { id, name } = await user.update(req.body);
+    const { id, name, avatar_id } = await user.update(req.body);
+
+    /**
+     * Find url of avatar if it files
+     */
+    const file = await File.findOne({ where: { id: avatar_id } });
+
+    const url = file && file.url;
 
     /**
      * Return user
@@ -61,6 +68,7 @@ class UserController {
       id,
       name,
       email,
+      avatar: { avatar_id, url },
     });
   }
 

@@ -4,7 +4,7 @@ class AvatarController {
   async store(req, res) {
     const {
       originalname: name,
-      key: path,
+      key,
       location: url,
       mimetype: type,
       size,
@@ -35,8 +35,20 @@ class AvatarController {
     /**
      * Destroy previous avatar image
      */
-    await File.destroy({ where: { avatar: true, owner: req.userId } });
+    const previousAvatar = await File.findOne({
+      where: { avatar: true, owner: req.userId },
+    });
 
+    if (previousAvatar) {
+      const { path } = previousAvatar;
+
+      await File.destroy({ where: { path } });
+    }
+
+    /**
+     * Return new avatar
+     */
+    const path = key;
     const file = await File.create({
       name,
       path,
