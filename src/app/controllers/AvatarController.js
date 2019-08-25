@@ -53,6 +53,7 @@ class AvatarController {
       name,
       path,
       url,
+      type,
       owner: req.userId,
       avatar: true,
     });

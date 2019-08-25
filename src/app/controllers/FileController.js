@@ -2,12 +2,18 @@ import File from '../models/File';
 
 class FileController {
   async store(req, res) {
-    const { originalname: name, key: path, location: url } = req.file;
+    const {
+      originalname: name,
+      key: path,
+      location: url,
+      mimetype: type,
+    } = req.file;
 
     const file = await File.create({
       name,
       path,
       url,
+      type,
       owner: req.userId,
       avatar: false,
     });

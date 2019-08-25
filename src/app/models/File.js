@@ -13,6 +13,7 @@ class File extends Model {
         path: Sequelize.STRING,
         url: Sequelize.STRING,
         avatar: Sequelize.BOOLEAN,
+        type: Sequelize.STRING,
       },
       {
         sequelize,

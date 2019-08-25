@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { resolve } from 'path';
+
 import multer from 'multer';
 import multerConfig from './config/multer';
 
@@ -35,5 +37,13 @@ routes.get('/file', FileController.index);
 routes.post('/file', upload.single('file'), FileController.store);
 routes.put('/file', ValidateFileUpdate, FileController.update);
 routes.delete('/file/:path', FileController.delete);
+
+routes.get('/download', (req, res) => {
+  const { name, path } = req.query;
+
+  res
+    .status(200)
+    .download(resolve(__dirname, '..', 'tmp', 'uploads', path), name);
+});
 
 export default routes;
